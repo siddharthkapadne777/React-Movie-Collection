@@ -1,1 +1,85 @@
 @import "tailwindcss";
+
+html, body {
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.movie-card:hover img{
+    transform: scale(1.05);
+}
+
+.search-form:focus-within {
+    outline: 1px solid #F70E21;
+}
+
+.nav-link{
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    height: fit-content;
+}
+
+.nav-link::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3pt;
+    height: 100%;
+    background-color: #F70E21;
+    transition: all 0.3s ease-out;
+    z-index: -1;
+    margin: auto;
+}
+
+.nav-link:hover::before{
+    width: 100%;
+    border-radius: 2px;
+}
+.nav-link.active::before,
+.nav-link[aria-current="page"]::before {
+    width: 100%;
+    border-radius: 2px;
+    background-color: #b8000f;
+}
+
+.nav-link:active{
+    transform: scale(0.95);
+    box-shadow: 0px 0px 20px 0px #F70E21;
+}
+
+.anim{
+    transform-origin: center;
+    animation: favorite 0.65s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1;
+}
+
+@keyframes favorite {
+    0% { transform: scale(1) rotate(0deg); }
+    18% { transform: scale(1.3) rotate(-12deg); }
+    36% { transform: scale(0.9) rotate(10deg); }
+    55% { transform: scale(1.15) rotate(-6deg); }
+    75% { transform: scale(0.97) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.anim-remove {
+    animation: favorite-remove 0.4s ease-out 1;
+}
+
+@keyframes favorite-remove {
+    0% { transform: scale(1) rotate(0deg); }
+    45% { transform: scale(0.65) rotate(18deg); }
+    75% { transform: scale(1.12) rotate(-8deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anim,
+    .anim-remove {
+        animation-duration: 0.01ms;
+    }
+}
